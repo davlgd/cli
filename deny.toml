@@ -3,5 +3,11 @@
 # local machine with an ephemeral or explicitly local private key; rc exposes
 # no remote decryption oracle. The advisory currently has no patched release
 # and explicitly permits this local-only threat model as its workaround.
+#
+# RUSTSEC-2026-0387 affects crypto-bigint 0.5, pulled in only by the `sigv4a`
+# feature of aws-sigv4 (ECDSA P-256 signing for SigV4a). rc aliases sign with
+# SigV4 only, and the S3 endpoint rules select SigV4a solely for Multi-Region
+# Access Point ARNs. The fix ships in crypto-bigint 0.7.6, which aws-sigv4 does
+# not depend on yet; remove this entry once it does.
 [advisories]
-ignore = ["RUSTSEC-2023-0071"]
+ignore = ["RUSTSEC-2023-0071", "RUSTSEC-2026-0387"]
