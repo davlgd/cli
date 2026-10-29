@@ -449,7 +449,7 @@ fn canonicalize_archive(raw: &[u8]) -> Result<ValidatedArchive> {
         let name = entry
             .name()
             .map_err(|_| {
-                Error::InvalidPath("IAM archive contains an unreadable entry".to_string())
+                Error::InvalidPath("IAM archive contains an unreadable entry name".to_string())
             })?
             .into_owned();
         if !allowed.contains(name.as_str()) || entry.is_dir() || !seen.insert(name.clone()) {
